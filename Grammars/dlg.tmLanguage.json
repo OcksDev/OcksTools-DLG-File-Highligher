@@ -1,0 +1,46 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Dialog Script",
+  "scopeName": "source.dlg",
+  "fileTypes": ["dlg"],
+  "patterns": [
+    { "include": "#override-with-at-tag" },
+    { "include": "#override-seperator-tag" },
+    { "include": "#angle-bracket-tag" },
+    { "include": "#curly-bracket-tag" },
+    { "include": "#dialog-title" }
+  ],
+  "repository": {
+
+    "angle-bracket-tag": {
+      "comment": "Anything inside < >",
+      "match": "<.+?>",
+      "name": "entity.other.attribute-name.dlg"
+    },
+
+    "override-with-at-tag": {
+      "comment": "Anything inside < >",
+      "match": "@<.+?>",
+      "name": "entity.name.function.dlg"
+    },
+
+    "curly-bracket-tag": {
+      "comment": "Anything inside { }",
+      "match": "{.+?}",
+      "name": "constant.numeric.dlg"
+    },
+
+    "override-seperator-tag": {
+      "comment": "Anything inside <= >",
+      "match": "</>",
+      "name": "constant.language.dlg"
+    },
+
+    "dialog-title": {
+      "comment": "Lines like -Title-",
+      "match": "\\A.*",
+      "name": "entity.name.section.dlg"
+    }
+
+  }
+}

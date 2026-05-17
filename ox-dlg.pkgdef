@@ -1,0 +1,12 @@
+[$RootKey$\TextMate\Repositories]
+"DlgGrammar"="$PackageFolder$\Grammars"
+
+[$RootKey$\TextMate\Grammars]
+"source.dlg"="$PackageFolder$\Grammars\dlg.tmLanguage.json"
+
+[$RootKey$\TextMate\Languages\source.dlg]
+"Name"="Dialog Script"
+"ScopeName"="source.dlg"
+"FileExtensions"="dlg"
+"LanguageConfiguration"="$PackageFolder$\dlg-language-configuration.json"
+"Repository"="DlgGrammar"
