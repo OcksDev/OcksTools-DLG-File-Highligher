@@ -7,8 +7,7 @@
     { "include": "#override-with-at-tag" },
     { "include": "#override-seperator-tag" },
     { "include": "#angle-bracket-tag" },
-    { "include": "#curly-bracket-tag" },
-    { "include": "#dialog-title" }
+    { "include": "#curly-bracket-tag" }
   ],
   "repository": {
 
@@ -34,13 +33,14 @@
       "comment": "Anything inside <= >",
       "match": "</>",
       "name": "constant.language.dlg"
-    },
-
-    "dialog-title": {
-      "comment": "Lines like -Title-",
-      "match": "\\A.*",
-      "name": "entity.name.section.dlg"
     }
+
+    //"dialog-title": {
+    //  "comment": "Lines like -Title-",
+    //  "begin": "\\A",
+    //  "end": "$",
+    //  "name": "entity.name.section.dlg"
+    //}
 
   }
 }
