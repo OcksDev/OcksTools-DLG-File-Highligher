@@ -27,24 +27,39 @@
         { "include": "#vars-tag" }
       ]
     },
-
     "override-with-at-tag": {
       "comment": "Anything inside @< >",
-      "match": "@<.*?>",
-      "name": "entity.name.function.dlg"
+      "begin": "@<",
+      "end": ">",
+      "name": "entity.name.function.dlg",
+      "beginCaptures": {
+        "0": { "name": "entity.name.function.dlg" }
+      },
+      "endCaptures": {
+        "0": { "name": "entity.name.function.dlg" }
+      },
+      "patterns": [
+        { "include": "#vars-tag" }
+      ]
     },
     "curly-bracket-tag": {
-      "comment": "Anything inside { }",
-      "begin": "\\{",
+      "comment": "Anything inside { } immediately before <",
+      "begin": "\\{(?=[^}]*\\}(?=<))",
       "end": "\\}(?=<)",
       "name": "constant.numeric.dlg",
+      "beginCaptures": {
+        "0": { "name": "constant.numeric.dlg" }
+      },
+      "endCaptures": {
+        "0": { "name": "constant.numeric.dlg" }
+      },
       "patterns": [
-        { "include": "#vars-mod-tag" }
+        { "include": "#vars-tag-curly" }
       ]
     },
     "override-seperator-tag": {
       "comment": "Deadass just this lol",
-      "match": "</>",
+      "match": "</.*?>",
       "name": "constant.language.dlg"
     },
 
@@ -56,14 +71,38 @@
 
     "vars-tag": {
       "comment": "vars inside <>",
-      "match": "[!@#*~](?=[^<>]*>)",
+      "match": "(?<=[=,<{])[!@#*~].*?(?=[=,>!}])",
       "name": "comment.line.dlg"
     },
 
-    "vars-mod-tag": {
-      "comment": "vars inside <>",
-      "match": "[!@#*~](?!=)(?=[^<>]*})",
-      "name": "comment.line.dlg"
+    "vars-tag-curly": {
+      "patterns": [
+        {
+          "comment": "LHS ! prefix var, only when == or != follows",
+          "match": "(?<=[{,])!(?![!@#*~])\\w+(?=[!=])",
+          "name": "comment.line.dlg"
+        },
+        {
+          "comment": "RHS ! prefix var after comma",
+          "match": "(?<=[,])!(?![!@#*~])\\w+",
+          "name": "comment.line.dlg"
+        },
+        {
+          "comment": "RHS value after == starting with a sigil",
+          "match": "(?<===)[!@#*~]\\w+",
+          "name": "comment.line.dlg"
+        },
+        {
+          "comment": "LHS sigil chain starting with non-! sigil",
+          "match": "(?<=[{,])[@#*~][!@#*~]*\\w+",
+          "name": "comment.line.dlg"
+        },
+        {
+          "comment": "LHS sigil chain after unconsumed leading !",
+          "match": "(?<=[!])[!@#*~]+\\w+",
+          "name": "comment.line.dlg"
+        }
+      ]
     }
 
   }
