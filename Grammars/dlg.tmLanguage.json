@@ -13,34 +13,58 @@
 
     "angle-bracket-tag": {
       "comment": "Anything inside < >",
-      "match": "<.+?>",
-      "name": "entity.other.attribute-name.dlg"
+      "begin": "<",
+      "end": ">",
+      "name": "entity.other.attribute-name.dlg",
+      "beginCaptures": {
+        "0": { "name": "entity.name.tag.dlg" }
+      },
+      "endCaptures": {
+        "0": { "name": "entity.name.tag.dlg" }
+      },
+      "patterns": [
+        { "include": "#equals-tag" },
+        { "include": "#vars-tag" }
+      ]
     },
 
     "override-with-at-tag": {
-      "comment": "Anything inside < >",
-      "match": "@<.+?>",
+      "comment": "Anything inside @< >",
+      "match": "@<.*?>",
       "name": "entity.name.function.dlg"
     },
-
     "curly-bracket-tag": {
       "comment": "Anything inside { }",
-      "match": "{.+?}",
-      "name": "constant.numeric.dlg"
+      "begin": "\\{",
+      "end": "\\}(?=<)",
+      "name": "constant.numeric.dlg",
+      "patterns": [
+        { "include": "#vars-mod-tag" }
+      ]
     },
-
     "override-seperator-tag": {
-      "comment": "Anything inside <= >",
+      "comment": "Deadass just this lol",
       "match": "</>",
       "name": "constant.language.dlg"
-    }
+    },
 
-    //"dialog-title": {
-    //  "comment": "Lines like -Title-",
-    //  "begin": "\\A",
-    //  "end": "$",
-    //  "name": "entity.name.section.dlg"
-    //}
+    "equals-tag": {
+      "comment": "= or , inside <>",
+      "match": "[=,](?=[^<>]*>)",
+      "name": "entity.name.tag.dlg"
+    },
+
+    "vars-tag": {
+      "comment": "vars inside <>",
+      "match": "[!@#*~](?=[^<>]*>)",
+      "name": "comment.line.dlg"
+    },
+
+    "vars-mod-tag": {
+      "comment": "vars inside <>",
+      "match": "[!@#*~](?!=)(?=[^<>]*})",
+      "name": "comment.line.dlg"
+    }
 
   }
 }
