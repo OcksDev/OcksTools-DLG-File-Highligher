@@ -4,6 +4,7 @@
   "scopeName": "source.dlg",
   "fileTypes": ["dlg"],
   "patterns": [
+    { "include": "#override-rand-tag" },
     { "include": "#override-with-at-tag" },
     { "include": "#override-seperator-tag" },
     { "include": "#angle-bracket-tag" },
@@ -23,6 +24,7 @@
         "0": { "name": "entity.name.tag.dlg" }
       },
       "patterns": [
+        { "include": "#override-rand-tag" },
         { "include": "#equals-tag" },
         { "include": "#vars-tag" }
       ]
@@ -39,8 +41,14 @@
         "0": { "name": "entity.name.function.dlg" }
       },
       "patterns": [
+        { "include": "#override-rand-tag" },
         { "include": "#vars-tag" }
       ]
+    },
+    "override-rand-tag": {
+      "comment": "Anything inside @[ ]",
+      "match": "@\\[.*?\\]",
+      "name": "entity.name.function.dlg"
     },
     "curly-bracket-tag": {
       "comment": "Anything inside { } immediately before <",

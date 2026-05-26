@@ -1,12 +1,17 @@
 {
   "brackets": [
     [ "<", ">" ],
+    [ "[", "]" ],
     [ "{", "}" ]
   ],
   "autoClosingPairs": [
     {
       "open": "<",
       "close": ">"
+    },
+    {
+      "open": "[",
+      "close": "]"
     },
     {
       "open": "{",
@@ -16,6 +21,7 @@
   "autoCloseBefore": ";:.,=}])>` \n\t!?@#$%^&*",
   "surroundingPairs": [
     [ "<", ">" ],
+    [ "[", "]" ],
     [ "{", "}" ]
   ]
 }
